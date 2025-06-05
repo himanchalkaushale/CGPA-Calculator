@@ -10,14 +10,15 @@ export default {
         sans: ['Inter', 'sans-serif'],
       },
       colors: {
-        primary: '#6366F1', // Indigo 500
-        secondary: '#8B5CF6', // Violet 500
-        accent: '#EC4899', // Pink 500
-        background: '#1F2937', // Gray 800
-        card: '#374151', // Gray 700
-        text: '#F3F4F6', // Gray 100
-        subtext: '#D1D5DB', // Gray 300
-        border: '#4B5563', // Gray 600
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        accent: 'var(--color-accent)',
+        background: 'var(--color-background)',
+        card: 'var(--color-card)',
+        text: 'var(--color-text)',
+        subtext: 'var(--color-subtext)',
+        border: 'var(--color-border)',
+        danger: 'var(--color-danger)',
       },
     },
   },

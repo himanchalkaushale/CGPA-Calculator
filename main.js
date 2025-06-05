@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const cgpaResultDisplay = document.getElementById('cgpa-result');
   const resetAllBtn = document.getElementById('reset-all');
   const branchSelect = document.getElementById('branch-select');
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const htmlElement = document.documentElement;
 
   let courseCount = 0;
 
@@ -33,6 +35,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentGradePoints = gradingSystems['B.Sc']; // Default to B.Sc
 
+  // Theme management functions
+  function setTheme(theme) {
+    htmlElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    updateThemeToggleIcon(theme);
+  }
+
+  function toggleTheme() {
+    const currentTheme = htmlElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+  }
+
+  function updateThemeToggleIcon(theme) {
+    const icon = themeToggleBtn.querySelector('svg');
+    if (theme === 'dark') {
+      icon.innerHTML = `
+        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+      `; // Moon icon
+    } else {
+      icon.innerHTML = `
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h1M4 12H3m15.325 3.325l-.707.707M5.373 5.373l-.707-.707M18.627 5.373l.707-.707M5.373 18.627l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+      `; // Sun icon
+    }
+  }
+
   // Function to update grade options in all course rows
   function updateGradeOptions() {
     const gradeOptionsHtml = Object.keys(currentGradePoints).map(grade =>
@@ -56,17 +84,17 @@ document.addEventListener('DOMContentLoaded', () => {
   function addCourseRow() {
     courseCount++;
     const courseRow = document.createElement('div');
-    // Added 'mb-4' for spacing between rows on mobile
-    courseRow.classList.add('flex', 'flex-col', 'md:flex-row', 'gap-3', 'items-center', 'bg-gray-700', 'p-4', 'rounded-lg', 'shadow-sm', 'border', 'border-border', 'mb-4');
+    // Updated classes for new theme
+    courseRow.classList.add('flex', 'flex-col', 'md:flex-row', 'gap-3', 'items-center', 'bg-background', 'p-4', 'rounded-lg', 'shadow-sm', 'border', 'border-border', 'mb-4');
     courseRow.innerHTML = `
       <input type="text" placeholder="Course Name (Optional)"
-             class="w-full md:flex-1 p-2 rounded-md bg-gray-600 border border-border text-text focus:ring-1 focus:ring-primary focus:border-transparent transition duration-200">
-      <select class="w-full md:w-auto p-2 rounded-md bg-gray-600 border border-border text-text focus:ring-1 focus:ring-primary focus:border-transparent transition duration-200 course-grade">
+             class="w-full md:flex-1 p-2 rounded-md bg-card border border-border text-text focus:ring-1 focus:ring-secondary focus:border-transparent transition duration-200">
+      <select class="w-full md:w-auto p-2 rounded-md bg-card border border-border text-text focus:ring-1 focus:ring-secondary focus:border-transparent transition duration-200 course-grade">
         <option value="N/A">Select Grade</option>
         ${Object.keys(currentGradePoints).map(grade => `<option value="${grade}">${grade}</option>`).join('')}
       </select>
-      <span class="w-full md:w-auto course-grade-points text-center text-lg font-semibold text-accent bg-gray-600 p-2 rounded-md border border-border flex-shrink-0">0.0</span>
-      <button class="w-full md:w-auto remove-course bg-red-500 hover:bg-red-600 text-white p-2 rounded-md transition duration-200">
+      <span class="w-full md:w-auto course-grade-points text-center text-lg font-semibold text-accent bg-card p-2 rounded-md border border-border flex-shrink-0">0.0</span>
+      <button class="w-full md:w-auto remove-course bg-danger hover:bg-red-700 text-white p-2 rounded-md transition duration-200">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm6 0a1 1 0 11-2 0v6a1 1 0 112 0V8z" clip-rule="evenodd" />
         </svg>
@@ -168,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Event Listeners
   addCourseBtn.addEventListener('click', addCourseRow);
+  themeToggleBtn.addEventListener('click', toggleTheme);
 
   // Apply validation and formatting on blur for both CGPA inputs
   prevCgpaInput.addEventListener('blur', () => {
@@ -207,4 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
   addCourseRow();
   updateGradeOptions(); // Ensure initial grade options are correct and points are displayed
   calculateAll();
+
+  // Apply saved theme on load
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  setTheme(savedTheme);
 });

@@ -4,18 +4,34 @@
 
 @layer base {
   :root {
-    --color-primary: #a78bfa; /* Purple-500 */
-    --color-secondary: #818cf8; /* Indigo-400 */
-    --color-accent: #38b2ac; /* Teal-500 */
-    --color-text: #e2e8f0; /* Slate-200 */
-    --color-subtext: #94a3b8; /* Slate-400 */
-    --color-background: #1a202c; /* Dark Blue-Gray */
-    --color-card: #2d3748; /* Darker Blue-Gray */
-    --color-border: #4a5568; /* Gray-600 */
+    /* Light Theme Colors (Modern Professional) */
+    --color-primary: #2C3E50;
+    --color-secondary: #3498DB;
+    --color-accent: #F39C12;
+    --color-text: #2C3E50;
+    --color-subtext: #7F8C8D;
+    --color-background: #ECF0F1;
+    --color-card: #FFFFFF;
+    --color-border: #BDC3C7;
+    --color-danger: #E74C3C;
+  }
+
+  [data-theme='dark'] {
+    /* Dark Theme Colors */
+    --color-primary: #BB86FC; /* Soft Purple */
+    --color-secondary: #03DAC6; /* Vibrant Teal */
+    --color-accent: #FFD700; /* Gold */
+    --color-text: #E0E0E0; /* Light Gray */
+    --color-subtext: #A0A0A0; /* Medium Gray */
+    --color-background: #121212; /* Very Dark Gray */
+    --color-card: #1E1E1E; /* Dark Gray */
+    --color-border: #333333; /* Darker Gray */
+    --color-danger: #CF6679; /* Muted Reddish Pink */
   }
 
   body {
     @apply bg-background text-text font-sans;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   /* Custom scrollbar for course inputs */
@@ -24,16 +40,16 @@
   }
 
   #course-inputs::-webkit-scrollbar-track {
-    background: var(--color-card);
+    background: var(--color-border);
     border-radius: 10px;
   }
 
   #course-inputs::-webkit-scrollbar-thumb {
-    background: var(--color-primary);
+    background: var(--color-secondary);
     border-radius: 10px;
   }
 
   #course-inputs::-webkit-scrollbar-thumb:hover {
-    background: var(--color-secondary);
+    background: var(--color-primary);
   }
 }
