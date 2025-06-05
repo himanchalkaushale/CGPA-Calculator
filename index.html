@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CGPA & SGPA Calculator</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body class="min-h-screen flex items-center justify-center p-4">
+    <div id="app" class="w-full max-w-4xl bg-card rounded-xl shadow-2xl p-6 md:p-8 border border-border">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-center text-primary mb-8 leading-tight">
+        Academic Performance Calculator
+      </h1>
+
+      <div class="mb-6">
+        <label for="branch-select" class="block text-subtext text-lg font-medium mb-2 text-center">Select Your Branch/Grading System:</label>
+        <select id="branch-select" class="w-full p-3 rounded-lg bg-gray-700 border border-border text-text focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200 text-center text-xl">
+          <option value="B.Sc">B.Sc (10-Point Scale)</option>
+          <option value="B.Tech">B.Tech (10-Point A-F Scale)</option>
+          <option value="BCA">BCA (10-Point A+ Scale)</option>
+        </select>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-1 gap-8 mb-8">
+        <!-- SGPA Calculator Section -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-border">
+          <h2 class="text-3xl font-bold text-secondary mb-6 text-center">SGPA Calculator</h2>
+          <div id="course-inputs" class="space-y-4 mb-6 max-h-96 overflow-y-auto pr-2">
+            <!-- Course input rows will be added here by JavaScript -->
+          </div>
+          <button id="add-course" class="w-full bg-primary hover:bg-secondary text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md">
+            Add Course
+          </button>
+          <div class="mt-6 p-4 bg-gray-700 rounded-lg text-center">
+            <p class="text-subtext text-lg">Your SGPA:</p>
+            <p id="sgpa-result" class="text-accent text-5xl font-extrabold mt-2">0.00</p>
+          </div>
+        </div>
+
+        <!-- CGPA Calculator Section -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-border">
+          <h2 class="text-3xl font-bold text-accent mb-6 text-center">CGPA Calculator</h2>
+          <div class="space-y-4 mb-6">
+            <div>
+              <label for="prev-cgpa" class="block text-subtext text-sm font-medium mb-2">Previous CGPA</label>
+              <input type="number" id="prev-cgpa" step="0.01" min="0" value="0.00"
+                     class="w-full p-3 rounded-lg bg-gray-700 border border-border text-text focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200">
+            </div>
+            <div>
+              <label for="current-sgpa" class="block text-subtext text-sm font-medium mb-2">Current Semester SGPA</label>
+              <input type="number" id="current-sgpa" step="0.01" min="0" max="10" value="0.00"
+                     class="w-full p-3 rounded-lg bg-gray-700 border border-border text-text focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200">
+            </div>
+          </div>
+          <div class="mt-6 p-4 bg-gray-700 rounded-lg text-center">
+            <p class="text-subtext text-lg">Your CGPA:</p>
+            <p id="cgpa-result" class="text-secondary text-5xl font-extrabold mt-2">0.00</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-8">
+        <button id="reset-all" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md">
+          Reset All
+        </button>
+      </div>
+
+      <footer class="mt-12 text-center text-subtext text-sm">
+        <p>&copy; 2024 Academic Performance Calculator. All rights reserved.</p>
+        <p class="mt-2">Designed with <span class="text-red-500">&hearts;</span> using HTML, Tailwind CSS, and JavaScript.</p>
+      </footer>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
