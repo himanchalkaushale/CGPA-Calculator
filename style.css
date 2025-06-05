@@ -7,7 +7,7 @@
     /* Light Theme Colors (Modern Professional) */
     --color-primary: #2C3E50;
     --color-secondary: #3498DB;
-    --color-accent: #F39C12;
+    --color-accent: #2ECC71; /* Changed to Emerald Green */
     --color-text: #2C3E50;
     --color-subtext: #7F8C8D;
     --color-background: #ECF0F1;
@@ -20,7 +20,7 @@
     /* Dark Theme Colors */
     --color-primary: #BB86FC; /* Soft Purple */
     --color-secondary: #03DAC6; /* Vibrant Teal */
-    --color-accent: #FFD700; /* Gold */
+    --color-accent: #00FF7F; /* Changed to Spring Green */
     --color-text: #E0E0E0; /* Light Gray */
     --color-subtext: #A0A0A0; /* Medium Gray */
     --color-background: #121212; /* Very Dark Gray */
